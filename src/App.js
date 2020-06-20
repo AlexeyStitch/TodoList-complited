@@ -23,7 +23,7 @@ function App() {
 
   const onDoneTask = (id) => {
     const updateOnDoneTask = todos.map(el => {
-      (el.done === el.id) return {...el, done: true}
+      (el.id === el.id) return {...el, done: true}
       else return el;
     })
     setTodos(updateOnDoneTask)
