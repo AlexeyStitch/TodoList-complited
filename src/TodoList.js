@@ -3,21 +3,20 @@ import './App.css';
 
 function TodoList(props) {
 
-    const [editTask, setEditTask] = useState({})
+  const [editTask, setEditTask] = useState({})
 
     const onEditTaskChange = (e) => {
-        setEditTask({...editTask, name: e.target.value})
+      setEditTask({...editTask, name: e.target.value})
     }
 
     const editMode = (task) => {
-        setEditTask(task)
+      setEditTask(task);
     }
 
     const onTaskSave = () => {
-        props.onTaskSave(editTask);
-        setEditTask({})
+      props.onTaskSave(editTask);
+      setEditTask({})
     }
-
 
 
     return (
@@ -31,10 +30,10 @@ function TodoList(props) {
                     </button>
                     {
                         editTask.id === el.id
-                            ? <><input type="text" value={editTask.name} onChange={onEditTaskChange}/>
-                            <button onClick={onTaskSave}>Save</button>
-                            </>
-                            : <span onClick={() => editMode(el)}>{el.name}</span>
+                        ? <><input type="text" value={editTask.name} onChange={onEditTaskChange}/>
+                        <button onClick={onTaskSave} disabled={!editTask.name.trim('')}>Save</button>
+                        </>
+                        : <span onClick={() => editMode(el)}>{el.name}</span>
                     }
                 </li>)
             }
